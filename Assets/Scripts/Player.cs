@@ -7,12 +7,17 @@ public class Player : MonoBehaviour
 	private float speed = 5.0f;
 	private float jumpSpeed = 8.0f;
 
+	//プレイヤーのRigidBody2D
 	private Rigidbody2D rd;
 
-
+	//地面に付いているかどうか
 	private bool isGround = false;
+
+	//ハイジャンプのフラグ
+	public bool hiJump = false;
 	
 	void Start (){
+		//プレイヤーのRigidbody2Dを取得
 		rd = gameObject.GetComponent<Rigidbody2D>();
 	}
 	
@@ -21,6 +26,7 @@ public class Player : MonoBehaviour
 		Jump();
 	}
 
+	//歩く処理
 	void Move()
 	{
 		float x = Input.GetAxisRaw("Horizontal");
@@ -28,6 +34,7 @@ public class Player : MonoBehaviour
 		rd.velocity = new Vector2(x * speed, rd.velocity.y);
 	}
 
+	//ジャンプ処理
 	void Jump()
 	{
 		if (isGround)
@@ -35,8 +42,18 @@ public class Player : MonoBehaviour
 //			Debug.Log();
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				rd.velocity = Vector2.up.normalized * jumpSpeed;
-				isGround = false;
+				Debug.Log("isGround = false");
+				if (hiJump == false)
+				{
+					//普通のジャンプ
+					rd.velocity = Vector2.up.normalized * jumpSpeed;
+				}
+				else
+				{
+					//ハイジャンプ
+					rd.velocity = Vector2.up.normalized * jumpSpeed * 2;
+				}
+//				isGround = false;
 			}
 			
 		}
@@ -46,13 +63,16 @@ public class Player : MonoBehaviour
 	{
 		if (c.gameObject.tag == "Block")
 		{
-			if (!isGround)
-			{
+//			if (!isGround)
+//			{
+				Debug.Log("isGround = true");
 				isGround = true;
-			}
+//			}
 		}
 	}
 	
-
-	
+	void OnCollisionExit2D(Collision2D c)
+	{
+		isGround = false;
+	}
 }
