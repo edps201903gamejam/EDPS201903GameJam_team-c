@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 	void Update () 
 	{
 		Move();
+		
 		Jump();
 	}
 
@@ -40,8 +41,7 @@ public class Player : MonoBehaviour
 	{
 		float x = Input.GetAxisRaw("Horizontal");
 
-		rd.velocity = new Vector2(x * speed, rd.velocity.y);
-		Debug.Log(rd.velocity.y);
+		rd.velocity = new Vector2(x * speed , rd.velocity.y);
 	}
 
 	//ジャンプ処理
@@ -50,7 +50,6 @@ public class Player : MonoBehaviour
 		if (isGround)
 		{
 			countTime += Time.deltaTime;
-//			Debug.Log(countTime);
 			
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
@@ -72,17 +71,14 @@ public class Player : MonoBehaviour
 					//普通のジャンプ力
 					jumpPower = 1.0f;
 				}
-				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
 				
-//				isGround = false;
+				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
 			}
 		}
 		else
 		{
 			countTime = 0;
 		}
-		
-//		Debug.Log(jumpPower);
 	}
 	
 	void OnCollisionEnter2D(Collision2D c)
@@ -94,13 +90,14 @@ public class Player : MonoBehaviour
 		}
 	}
 	
-	void OnCollisionStay2D(Collision2D c)
-	{
-		if (c.gameObject.tag == "Block")
-		{
-			isGround = true;
-		}
-	}
+	//Playerが地面にStayしている場合
+//	void OnCollisionStay2D(Collision2D c)
+//	{
+//		if (c.gameObject.tag == "Block")
+//		{
+//			isGround = true;
+//		}
+//	}
 	
 	void OnCollisionExit2D(Collision2D c)
 	{

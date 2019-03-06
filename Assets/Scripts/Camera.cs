@@ -9,8 +9,10 @@ public class Camera : MonoBehaviour
 	
 	void Update ()
 	{
+		//プレイヤーのY軸に合わせてカメラが移動する
 		this.transform.position = new Vector3(0, player.transform.position.y, -10);
 		
+		//プレイヤーのX軸、Y軸に合わせてカメラが移動する
 //		this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
 	}
 }
