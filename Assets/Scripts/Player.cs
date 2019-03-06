@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
 	
 	private float speed = 5.0f;
 	private float jumpSpeed = 8.0f;
-	public float jumpPower = 1.0f;
+	public float jumpPower = 1.1f;
 
-	private float timeJump = 0.5f;
+	private float timeJump = 0.09f;
 	private float countTime;
 	
 	void Start ()
@@ -58,19 +58,19 @@ public class Player : MonoBehaviour
 				if (countTime < timeJump)
 				{
 					//jumpPowerが第２段階の時とジャンプ力を維持する時
-					if (jumpPower == 1.2f || jumpPower == 1.5f)
+					if (jumpPower == 1.3f || jumpPower == 1.5f)
 					{
 						jumpPower = 1.5f;
 					}
 					else
 					{
-						jumpPower = 1.2f;
+						jumpPower = 1.3f;
 					}	
 				}
 				else
 				{
 					//普通のジャンプ力
-					jumpPower = 1.0f;
+					jumpPower = 1.1f;
 				}
 				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
 				
