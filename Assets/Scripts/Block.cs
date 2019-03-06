@@ -5,7 +5,7 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
 	//ブロックが存在する時間
-	private float timeLimit = 2.0f;
+	private float timeLimit = 1.0f;
 
 	//秒数を数える変数
 	private float countTime;
