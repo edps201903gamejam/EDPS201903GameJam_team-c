@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	private Rigidbody2D rd;
 
 	//地面に付いているかどうか
-	private bool isGround = false;
+	public bool isGround;
 
 	//ハイジャンプのフラグ
 	public bool hiJump = false;
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 	void Start (){
 		//プレイヤーのRigidbody2Dを取得
 		rd = gameObject.GetComponent<Rigidbody2D>();
+		isGround = false;
 	}
 	
 	void Update () {
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
 //			Debug.Log();
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				Debug.Log("isGround = false");
+//				Debug.Log("isGround = false");
 				if (hiJump == false)
 				{
 					//普通のジャンプ
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
 		{
 //			if (!isGround)
 //			{
-				Debug.Log("isGround = true");
+//				Debug.Log("isGround = true");
 				isGround = true;
 //			}
 		}

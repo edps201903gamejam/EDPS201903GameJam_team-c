@@ -4,24 +4,56 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+	private Player player;
+	
 	//ブロックが存在する時間
-	private float timeLimit = 3.0f;
+	private float timeLimit = 1.0f;
 
-	private float counttime;
+	//秒数を数える変数
+	private float countTime;
+	
+	//現在のブロックの個数
+	private int currentBlock;
+
+	//ぶつかった時の時間
+	private float collisionTime;
 
 	void Start ()
 	{
-		counttime = 0;
+		countTime = 0;
 
+		collisionTime = float.MaxValue;
+
+		player = GetComponent<Player>();
+
+		foreach (Transform block in this.transform)
+		{
+			Debug.Log(block.transform.name);
+		}
 	}
 	
 	void Update ()
 	{
-		counttime += Time.deltaTime;
+		//timeをカウントする
+		countTime += Time.deltaTime;
 
-		if (counttime >= timeLimit)
+		//counttimeがtimeLimitを超えたらオブジェクトを消す
+		if (IsDestroy() == true)
 		{
 			Destroy(this.gameObject);
+		}
+	}
+
+	bool IsDestroy()
+	{
+		return countTime - collisionTime >= timeLimit;
+	}
+
+	void OnCollisionEnter2D(Collision2D c)
+	{
+		if (c.gameObject.tag == "Player")
+		{
+			collisionTime = countTime;
 		}
 	}
 }
