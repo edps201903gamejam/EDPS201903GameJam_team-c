@@ -15,17 +15,22 @@ public class Block : MonoBehaviour
 
 	//ぶつかった時の時間
 	private float collisionTime;
+	
+	//色情報
+	private float red = 1.0f;
+	private float green = 1.0f;
+	private float blue = 1.0f;
+	private float alpha = 1.0f;
 
+	public bool playerFlag;
+	
 	void Start ()
 	{
 		countTime = 0;
 
 		collisionTime = float.MaxValue;
 
-		foreach (Transform block in this.transform)
-		{
-			Debug.Log(block.transform.name);
-		}
+		playerFlag = false;
 	}
 	
 	void Update ()
@@ -33,6 +38,8 @@ public class Block : MonoBehaviour
 		//timeをカウントする
 		countTime += Time.deltaTime;
 
+		AlphaUpdate();
+		
 		//countTimeがtimeLimitを超えたらオブジェクトを消す
 		if (IsDestroy() == true)
 		{
@@ -40,6 +47,17 @@ public class Block : MonoBehaviour
 		}
 	}
 
+	//画像の透明度を変更する処理
+	void AlphaUpdate()
+	{
+		if (playerFlag)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(red, green, blue, alpha);
+			alpha -= Time.deltaTime / 255f;
+		}
+	}
+
+	//timeLimitの値を超えたかどうかの判定
 	bool IsDestroy()
 	{
 		return countTime - collisionTime >= timeLimit;
@@ -50,6 +68,7 @@ public class Block : MonoBehaviour
 		if (c.gameObject.tag == "Player")
 		{
 			collisionTime = countTime;
+			playerFlag = true;
 		}
 	}
 }
