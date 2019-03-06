@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	private float speed = 5.0f;
-	private float jumpSpeed = 8.0f;
-
 	//プレイヤーのRigidBody2D
 	private Rigidbody2D rd;
 
@@ -14,15 +11,26 @@ public class Player : MonoBehaviour
 	public bool isGround;
 
 	//ハイジャンプのフラグ
-	public bool hiJump = false;
+//	public bool hiJump = false;
 	
-	void Start (){
+	private float speed = 5.0f;
+	private float jumpSpeed = 8.0f;
+	public float jumpPower = 1.0f;
+
+	private float timeJump = 0.5f;
+	private float countTime;
+	
+	void Start ()
+	{
 		//プレイヤーのRigidbody2Dを取得
 		rd = gameObject.GetComponent<Rigidbody2D>();
 		isGround = false;
+
+		countTime = 0;
 	}
 	
-	void Update () {
+	void Update () 
+	{
 		Move();
 		Jump();
 	}
@@ -33,6 +41,7 @@ public class Player : MonoBehaviour
 		float x = Input.GetAxisRaw("Horizontal");
 
 		rd.velocity = new Vector2(x * speed, rd.velocity.y);
+		Debug.Log(rd.velocity.y);
 	}
 
 	//ジャンプ処理
@@ -40,22 +49,47 @@ public class Player : MonoBehaviour
 	{
 		if (isGround)
 		{
-//			Debug.Log();
+			countTime += Time.deltaTime;
+//			Debug.Log(countTime);
+			
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-//				Debug.Log("isGround = false");
-				if (hiJump == false)
+				//countTimeがtimeJump未満ならジャンプ力をあげる
+				if (countTime < timeJump)
 				{
-					//普通のジャンプ
-					rd.velocity = Vector2.up.normalized * jumpSpeed;
+					//jumpPowerが第２段階の時とジャンプ力を維持する時
+					if (jumpPower == 1.2f || jumpPower == 1.5f)
+					{
+						jumpPower = 1.5f;
+					}
+					else
+					{
+						jumpPower = 1.2f;
+					}	
 				}
 				else
 				{
-					//ハイジャンプ
-					rd.velocity = Vector2.up.normalized * jumpSpeed * 2;
+					//普通のジャンプ力
+					jumpPower = 1.0f;
 				}
+				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
+				
 //				isGround = false;
 			}
+		}
+		else
+		{
+			countTime = 0;
+		}
+		
+//		Debug.Log(jumpPower);
+	}
+	
+	void OnCollisionEnter2D(Collision2D c)
+	{
+		if (c.gameObject.tag == "Block")
+		{
+			isGround = true;
 			
 		}
 	}
@@ -64,11 +98,7 @@ public class Player : MonoBehaviour
 	{
 		if (c.gameObject.tag == "Block")
 		{
-//			if (!isGround)
-//			{
-//				Debug.Log("isGround = true");
-				isGround = true;
-//			}
+			isGround = true;
 		}
 	}
 	

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-	private Player player;
-	
 	//ブロックが存在する時間
-	private float timeLimit = 1.0f;
+	private float timeLimit = 2.0f;
 
 	//秒数を数える変数
 	private float countTime;
@@ -24,8 +22,6 @@ public class Block : MonoBehaviour
 
 		collisionTime = float.MaxValue;
 
-		player = GetComponent<Player>();
-
 		foreach (Transform block in this.transform)
 		{
 			Debug.Log(block.transform.name);
@@ -37,7 +33,7 @@ public class Block : MonoBehaviour
 		//timeをカウントする
 		countTime += Time.deltaTime;
 
-		//counttimeがtimeLimitを超えたらオブジェクトを消す
+		//countTimeがtimeLimitを超えたらオブジェクトを消す
 		if (IsDestroy() == true)
 		{
 			Destroy(this.gameObject);
