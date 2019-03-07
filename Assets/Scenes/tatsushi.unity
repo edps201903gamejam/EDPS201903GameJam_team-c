@@ -1770,31 +1770,6 @@ Prefab:
       propertyPath: m_Name
       value: Block3
       objectReference: {fileID: 0}
-    - target: {fileID: 212494837598056958, guid: 2634c884d3cbe4530aaba916b9f06b53,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 937336939aeaf4397afd68dfde3412c7,
-        type: 3}
-    - target: {fileID: 61183724190646468, guid: 2634c884d3cbe4530aaba916b9f06b53,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4893691623117264, guid: 2634c884d3cbe4530aaba916b9f06b53, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.4806
-      objectReference: {fileID: 0}
-    - target: {fileID: 212494837598056958, guid: 2634c884d3cbe4530aaba916b9f06b53,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1313111581
-      objectReference: {fileID: 0}
-    - target: {fileID: 212494837598056958, guid: 2634c884d3cbe4530aaba916b9f06b53,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2634c884d3cbe4530aaba916b9f06b53, type: 2}
   m_IsPrefabAsset: 0
@@ -2075,7 +2050,7 @@ Animator:
   m_GameObject: {fileID: 2009705799}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fa60658a27b8c430eae5cf547b1c96e3, type: 2}
+  m_Controller: {fileID: 9100000, guid: e3f9832da4a0f467d9be82048178e392, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
