@@ -29,7 +29,26 @@ public class Block : MonoBehaviour
 	public bool playerFlag;
 
 	private float currentTime;
-	
+
+	//移動床の移動座標と速度
+#pragma warning disable 0649
+	[SerializeField]
+	float moveX;
+	[SerializeField]
+	float moveY;
+	[SerializeField]
+	float speed;
+	[SerializeField]
+	protected float waitTime;
+
+	float step;
+	bool goBack = false;
+	Vector3 origin;
+	Vector3 destination;
+
+
+	protected bool stop = false;
+
 	void Start ()
 	{
 		r = this.GetComponent<SpriteRenderer>();
@@ -41,6 +60,9 @@ public class Block : MonoBehaviour
 		playerFlag = false;
 
 		currentTime = timeLimit;
+
+		origin = transform.position;
+		destination = new Vector3(origin.x - moveX, origin.y - moveY);
 	}
 	
 	void Update ()
@@ -54,6 +76,37 @@ public class Block : MonoBehaviour
 		if (IsDestroy() == true)
 		{
 			Destroy(this.gameObject);
+		}
+
+		if (stop)
+		{
+			return;
+		}
+
+		step = speed * Time.deltaTime;
+
+		//移動床の挙動
+		if (!goBack)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, destination, step);
+
+			if (transform.position == destination)
+			{
+				goBack = true;
+
+				StartCoroutine(Wait());
+			}
+		}
+		else
+		{
+			transform.position = Vector3.MoveTowards(transform.position, origin, step);
+
+			if (transform.position == origin)
+			{
+				goBack = false;
+
+				StartCoroutine(Wait());
+			}
 		}
 	}
 
@@ -83,5 +136,15 @@ public class Block : MonoBehaviour
 			collisionTime = countTime;
 			playerFlag = true;
 		}
+	}
+
+	//移動床の往復待機時間
+	protected IEnumerator Wait()
+	{
+		stop = true;
+
+		yield return new WaitForSeconds(waitTime);
+
+		stop = false;
 	}
 }
