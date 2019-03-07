@@ -1794,48 +1794,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114677330391757156, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114246270633933366, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50055028201726712, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50055028201726712, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_UseAutoMass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50055028201726712, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50055028201726712, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 61033824058377510, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61033824058377510, guid: 9d4ae6929437f4213a9460655f11b38c,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.64
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114246270633933366, guid: 9d4ae6929437f4213a9460655f11b38c, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d4ae6929437f4213a9460655f11b38c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1819725163

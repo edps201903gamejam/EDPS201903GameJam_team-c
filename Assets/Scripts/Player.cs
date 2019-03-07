@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
 	
 	private float countTime;
 	
+	public bool maxJump;
+
+	public GameObject effect;
+	
 	void Start ()
 	{
 		//プレイヤーのRigidbody2Dを取得
@@ -37,6 +41,8 @@ public class Player : MonoBehaviour
 		rd.useAutoMass = false;
 		rd.mass = 1.0f;
 		rd.gravityScale = 1.0f;
+
+		maxJump = false;
 	}
 	
 	void FixedUpdate ()
@@ -49,6 +55,14 @@ public class Player : MonoBehaviour
 	{
 		Move();
 		Jump();
+
+//		if (maxJump && isGround)
+//		{
+//			//プレイヤーの着地エフェクト
+//			effect2 = Instantiate(effect, this.transform.position, Quaternion.identity);
+//			Destroy(effect2, 0.5f);
+//		}
+		
 	}
 
 	//歩く処理
@@ -64,6 +78,8 @@ public class Player : MonoBehaviour
 		rd.velocity = new Vector2(x * speed, rd.velocity.y);
 	}
 
+	
+	
 	//ジャンプ処理
 	void Jump()
 	{
@@ -73,23 +89,35 @@ public class Player : MonoBehaviour
 			
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
+				
 				//countTimeがtimeJump未満ならジャンプ力をあげる
-				if (countTime < timeJump)
+				if (countTime <= timeJump)
 				{
-					//jumpPowerが第２段階の時とジャンプ力を維持する時
-					if (jumpPower == 1.3f || jumpPower == 1.5f)
+					if (jumpPower == 1.3f)
 					{
-						jumpPower = 1.5f;
+						if (jumpPower == 1.5f)
+						{
+							maxJump = false;
+							jumpPower = 1.0f;
+						}
+						else
+						{
+							jumpPower = 1.5f;
+							maxJump = true;
+						}
 					}
 					else
 					{
+						
 						jumpPower = 1.3f;
 					}	
+					
 				}
 				else
 				{
 					//普通のジャンプ力
 					jumpPower = 1.0f;
+					maxJump = false;
 				}
 				
 				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
@@ -120,7 +148,11 @@ public class Player : MonoBehaviour
 		if (c.gameObject.tag == "Block")
 		{
 			isGround = true;
-			
+			if (maxJump)
+			{
+				Instantiate(effect, this.transform.position, Quaternion.identity);
+			}
+
 		}
 	}
 	
