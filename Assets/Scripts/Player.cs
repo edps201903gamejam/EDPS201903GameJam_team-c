@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 	public bool maxJump;
 
 	public GameObject effect;
+
+	public int jumpCount;
 	
 	void Start ()
 	{
@@ -43,6 +45,8 @@ public class Player : MonoBehaviour
 		rd.gravityScale = 1.0f;
 
 		maxJump = false;
+
+		jumpCount = 0;
 	}
 	
 	void FixedUpdate ()
@@ -86,40 +90,37 @@ public class Player : MonoBehaviour
 		if (isGround)
 		{
 			countTime += Time.deltaTime;
-			
 			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				
+			{	
 				//countTimeがtimeJump未満ならジャンプ力をあげる
 				if (countTime <= timeJump)
 				{
-					if (jumpPower == 1.3f)
+					if (jumpCount == 0)
 					{
-						if (jumpPower == 1.5f)
-						{
-							maxJump = false;
-							jumpPower = 1.0f;
-						}
-						else
-						{
-							jumpPower = 1.5f;
-							maxJump = true;
-						}
-					}
-					else
-					{
-						
 						jumpPower = 1.3f;
-					}	
-					
+						jumpCount++;
+					}else if (jumpCount == 1)
+					{
+						jumpPower = 1.5f;
+						jumpCount++;
+						maxJump = true;
+					}
+					else if(jumpCount == 2)
+					{
+						jumpPower = 1.0f;
+						jumpCount = 0;
+						maxJump = false;
+					}
 				}
 				else
 				{
 					//普通のジャンプ力
 					jumpPower = 1.0f;
+					jumpCount = 0;
 					maxJump = false;
 				}
-				
+
+				//プレイヤーのジャンプ処理
 				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
 			}
 		}
@@ -150,7 +151,7 @@ public class Player : MonoBehaviour
 			isGround = true;
 			if (maxJump)
 			{
-				Instantiate(effect, this.transform.position, Quaternion.identity);
+//				Instantiate(effect, this.transform.position, Quaternion.identity);
 			}
 
 		}
