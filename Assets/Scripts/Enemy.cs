@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
 		if (c.gameObject.name == "Player")
 		{
 			Debug.Log("GameOver");
+			SceneManager.LoadScene ("GameOver");
 		}
 	}
 }

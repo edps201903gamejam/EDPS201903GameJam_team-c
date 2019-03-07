@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Block
   - Item
+  - PowerItem
   layers:
   - Default
   - TransparentFX

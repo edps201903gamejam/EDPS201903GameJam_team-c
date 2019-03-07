@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+	//画像の色情報などを取得
+	private SpriteRenderer r;
+	
 	//ブロックが存在する時間
 	private float timeLimit = 1.0f;
 
@@ -23,14 +27,20 @@ public class Block : MonoBehaviour
 	private float alpha = 1.0f;
 
 	public bool playerFlag;
+
+	private float currentTime;
 	
 	void Start ()
 	{
+		r = this.GetComponent<SpriteRenderer>();
+		
 		countTime = 0;
 
 		collisionTime = float.MaxValue;
 
 		playerFlag = false;
+
+		currentTime = timeLimit;
 	}
 	
 	void Update ()
@@ -52,15 +62,18 @@ public class Block : MonoBehaviour
 	{
 		if (playerFlag)
 		{
-			this.GetComponent<SpriteRenderer>().color = new Color(red, green, blue, alpha);
-			alpha -= Time.deltaTime / 255f;
+			currentTime -= Time.deltaTime;
+
+			float a = currentTime / timeLimit;
+			
+			r.color = new Color(1.0f, 1.0f, 1.0f, a);
 		}
 	}
 
 	//timeLimitの値を超えたかどうかの判定
 	bool IsDestroy()
 	{
-		return countTime - collisionTime >= timeLimit;
+		return countTime - collisionTime > timeLimit;
 	}
 
 	void OnCollisionEnter2D(Collision2D c)

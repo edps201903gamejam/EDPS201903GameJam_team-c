@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	public bool isGround;
 
 	//ハイジャンプのフラグ
-//	public bool hiJump = false;
+	public bool speedUp;
 	
 	private float speed = 5.0f;
 	private float jumpSpeed = 8.0f;
@@ -25,14 +25,20 @@ public class Player : MonoBehaviour
 		//プレイヤーのRigidbody2Dを取得
 		rd = gameObject.GetComponent<Rigidbody2D>();
 		isGround = false;
+		speedUp = false;
 
 		countTime = 0;
 	}
 	
-	void Update () 
+	void FixedUpdate ()
+	{
+		RigidMove();
+	}
+	
+	//rigidbody2Dで移動する
+	void RigidMove()
 	{
 		Move();
-		
 		Jump();
 	}
 
@@ -41,7 +47,12 @@ public class Player : MonoBehaviour
 	{
 		float x = Input.GetAxisRaw("Horizontal");
 
-		rd.velocity = new Vector2(x * speed , rd.velocity.y);
+		if (speedUp == true)
+		{
+			speed = 10.0f;
+		}
+		
+		rd.velocity = new Vector2(x * speed, rd.velocity.y);
 	}
 
 	//ジャンプ処理
@@ -73,11 +84,23 @@ public class Player : MonoBehaviour
 				}
 				
 				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
+//				rd.AddForce(Vector2.up * 350 * jumpPower * Time.deltaTime, ForceMode2D.Impulse);
 			}
 		}
 		else
 		{
 			countTime = 0;
+		}
+	}
+	
+	void OnTriggerEnter2D(Collider2D c)
+	{
+		//ジャンプ力が上がるアイテムに触れた時
+		if (c.gameObject.tag == "PowerItem")
+		{
+//			Debug.Log("aaa");
+			speedUp = true;
+			Destroy(c.gameObject);
 		}
 	}
 	
