@@ -1642,6 +1642,21 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 50055028201726712, guid: 9d4ae6929437f4213a9460655f11b38c,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50055028201726712, guid: 9d4ae6929437f4213a9460655f11b38c,
+        type: 2}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50055028201726712, guid: 9d4ae6929437f4213a9460655f11b38c,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114246270633933366, guid: 9d4ae6929437f4213a9460655f11b38c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9d4ae6929437f4213a9460655f11b38c, type: 2}
@@ -1790,6 +1805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFlag: 0
+  moveX: 0
+  moveY: 0
+  speed: 0
+  waitTime: 0
 --- !u!4 &1985513956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4893691623117264, guid: 2634c884d3cbe4530aaba916b9f06b53,

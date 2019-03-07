@@ -14,10 +14,10 @@ public class Player : MonoBehaviour
 	public bool speedUp;
 	
 	private float speed = 5.0f;
-	private float jumpSpeed = 8.0f;
-	public float jumpPower = 1.1f;
+	private float jumpSpeed = 12.5f;
+	public float jumpPower = 1.0f;
 
-	private float timeJump = 0.09f;
+	private float timeJump = 0.25f;
 	private float countTime;
 	
 	void Start ()
@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
 		speedUp = false;
 
 		countTime = 0;
+
+		//重力を変更できないようにする
+		rd.useAutoMass = false;
+		rd.mass = 1.0f;
+		rd.gravityScale = 1.0f;
 	}
 	
 	void FixedUpdate ()
@@ -80,7 +85,7 @@ public class Player : MonoBehaviour
 				else
 				{
 					//普通のジャンプ力
-					jumpPower = 1.1f;
+					jumpPower = 1.0f;
 				}
 				
 				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
@@ -90,6 +95,7 @@ public class Player : MonoBehaviour
 		else
 		{
 			countTime = 0;
+			rd.AddForce(Vector2.down * 22.5f);
 		}
 	}
 	
