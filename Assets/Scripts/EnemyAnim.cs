@@ -5,15 +5,28 @@ using UnityEngine;
 public class EnemyAnim : MonoBehaviour
 {
 	private Animator anim;
-	
+
+	public GameObject targetPlayer;
+
+	private Vector2 plyaerPos;
+
+	private SpriteRenderer srender;
 	
 	void Start ()
 	{
+		//プレイヤーを取得
+		targetPlayer = GameObject.FindGameObjectWithTag("Player");
+		//プレイヤーの現在の座様を取得
+		plyaerPos = targetPlayer.transform.position;
+		
+		
 		anim = GetComponent("Animator") as Animator;
 		
-		var _spriteRenderer = GetComponent<SpriteRenderer>();
-		var _m = _spriteRenderer.localToWorldMatrix;
-		var _sprite = _spriteRenderer.sprite;
+		//SpriteRendererを取得
+		srender = this.GetComponent<SpriteRenderer>();
+		
+		var _m = srender.localToWorldMatrix;
+		var _sprite = srender.sprite;
 		var _halfX = _sprite.bounds.extents.x;
 		var _halfY = _sprite.bounds.extents.y;
 		var _vec = new Vector3(-_halfX, _halfY, 0f);
@@ -23,16 +36,22 @@ public class EnemyAnim : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		//プレイヤーの座標を取得し続ける
+		plyaerPos = targetPlayer.transform.position;
+		
+		Debug.Log(plyaerPos.x);
+		
+		if (plyaerPos.x >= 0 /*Input.GetKeyDown(KeyCode.S)*/)
+		{
+			
+			anim.SetBool("right", true);
+			anim.SetBool("left", false);
+		}
+
+		else if (plyaerPos.x <= 0/*Input.GetKeyDown(KeyCode.F)*/)
 		{
 			anim.SetBool("left", true);
 			anim.SetBool("right", false);
-		}
-
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			anim.SetBool("right", true);
-			anim.SetBool("left", false);
 		}
 	}
 }
