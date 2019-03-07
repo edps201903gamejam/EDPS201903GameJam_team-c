@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
 			isGround = true;
 			if (maxJump)
 			{
-//				Instantiate(effect, this.transform.position, Quaternion.identity);
+				Instantiate(effect, this.transform.position, Quaternion.identity);
 			}
 
 		}

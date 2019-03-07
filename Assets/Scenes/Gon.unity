@@ -280,9 +280,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1746229759438998, guid: 835b16f14b7864dbf9d0ac2e237e4120, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 198075794938214580, guid: 835b16f14b7864dbf9d0ac2e237e4120,
+        type: 2}
+      propertyPath: SizeBySpeedModule.curve.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198075794938214580, guid: 835b16f14b7864dbf9d0ac2e237e4120,
+        type: 2}
+      propertyPath: SizeBySpeedModule.y.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198075794938214580, guid: 835b16f14b7864dbf9d0ac2e237e4120,
+        type: 2}
+      propertyPath: SizeBySpeedModule.z.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198075794938214580, guid: 835b16f14b7864dbf9d0ac2e237e4120,
+        type: 2}
+      propertyPath: SizeBySpeedModule.curve.minCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198075794938214580, guid: 835b16f14b7864dbf9d0ac2e237e4120,
+        type: 2}
+      propertyPath: SizeBySpeedModule.curve.minCurve.m_Curve.Array.data[1].time
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 835b16f14b7864dbf9d0ac2e237e4120, type: 2}
