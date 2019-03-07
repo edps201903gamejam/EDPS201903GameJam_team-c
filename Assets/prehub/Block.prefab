@@ -79,6 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36356114a0ffb44c291c8d5a0770d0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFlag: 0
+  moveX: 0
+  moveY: 0
+  speed: 0
+  waitTime: 0
 --- !u!212 &212494837598056958
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -139,7 +144,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 140
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
