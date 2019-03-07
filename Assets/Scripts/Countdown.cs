@@ -7,18 +7,18 @@ public class Countdown : MonoBehaviour {
 	public Text timerText;
  
 	public float totalTime;
-	int seconds;
+	public  static int seconds;
  
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+		totalTime = 0.0f;
 	}
  
 	// Update is called once per frame
 	void Update () {
-		totalTime -= Time.deltaTime;
+		totalTime += Time.deltaTime;
 		seconds = (int)totalTime;
 		timerText.text= seconds.ToString();
- 
 	}
 }
