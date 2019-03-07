@@ -13,11 +13,15 @@ public class Player : MonoBehaviour
 	//ハイジャンプのフラグ
 	public bool speedUp;
 	
+	//移動速度
 	private float speed = 5.0f;
+	//ジャンプの高さ
 	private float jumpSpeed = 12.5f;
+	//ジャンプの力
 	public float jumpPower = 1.0f;
 
 	private float timeJump = 0.25f;
+	
 	private float countTime;
 	
 	void Start ()
@@ -89,14 +93,15 @@ public class Player : MonoBehaviour
 				}
 				
 				rd.velocity = Vector2.up.normalized * jumpSpeed * jumpPower;
-//				rd.AddForce(Vector2.up * 350 * jumpPower * Time.deltaTime, ForceMode2D.Impulse);
 			}
 		}
 		else
 		{
 			countTime = 0;
-			rd.AddForce(Vector2.down * 22.5f);
+			rd.AddForce(Vector2.down.normalized * 22.5f);
 		}
+
+		isGround = false;
 	}
 	
 	void OnTriggerEnter2D(Collider2D c)
@@ -120,13 +125,13 @@ public class Player : MonoBehaviour
 	}
 	
 	//Playerが地面にStayしている場合
-//	void OnCollisionStay2D(Collision2D c)
-//	{
-//		if (c.gameObject.tag == "Block")
-//		{
-//			isGround = true;
-//		}
-//	}
+	void OnCollisionStay2D(Collision2D c)
+	{
+		if (c.gameObject.tag == "Block")
+		{
+			isGround = true;
+		}
+	}
 	
 	void OnCollisionExit2D(Collision2D c)
 	{
