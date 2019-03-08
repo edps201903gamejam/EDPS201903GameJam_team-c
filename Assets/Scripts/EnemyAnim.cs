@@ -2,37 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 敵キャラのアニメーションを管理するクラス
+/// </summary>
 public class EnemyAnim : MonoBehaviour
 {
 	private Animator anim;
-	
+
+	public GameObject targetPlayer;
+
+	private Vector2 plyaerPos;
+
+	private SpriteRenderer srender;
 	
 	void Start ()
 	{
+		//Animatorを取得
 		anim = GetComponent("Animator") as Animator;
 		
-		var _spriteRenderer = GetComponent<SpriteRenderer>();
-		var _m = _spriteRenderer.localToWorldMatrix;
-		var _sprite = _spriteRenderer.sprite;
-		var _halfX = _sprite.bounds.extents.x;
-		var _halfY = _sprite.bounds.extents.y;
-		var _vec = new Vector3(-_halfX, _halfY, 0f);
-		var _pos = _m.MultiplyPoint3x4(_vec);
-		Debug.Log("1 : " + _pos);
+		//プレイヤーを取得
+		targetPlayer = GameObject.FindGameObjectWithTag("Player");
+		//プレイヤーの現在の座様を取得
+		plyaerPos = targetPlayer.transform.position;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-			anim.SetBool("left", true);
-			anim.SetBool("right", false);
-		}
-
-		if (Input.GetKeyDown(KeyCode.RightArrow))
+		//プレイヤーの座標を取得し続ける
+		plyaerPos = targetPlayer.transform.position;
+		
+		//プレイヤーが座標0以上だと目が右に動く
+		if (plyaerPos.x >= 0)
 		{
 			anim.SetBool("right", true);
 			anim.SetBool("left", false);
+		}
+		//プレイヤーが座標0以下だと目が右に動く
+		else if (plyaerPos.x <= 0)
+		{
+			anim.SetBool("left", true);
+			anim.SetBool("right", false);
 		}
 	}
 }
