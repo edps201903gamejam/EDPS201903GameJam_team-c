@@ -10,8 +10,17 @@ public class GoalManager : MonoBehaviour {
 	{
 		if (c.gameObject.tag == "Player")
 		{
-			Debug.Log("goal");
+			SceneManager.LoadScene ("Main_2");
+
+		//ステージ2 → ステージ3
+		if(SceneManager.GetActiveScene().name == "Main_2"){
+			SceneManager.LoadScene ("Main_3");
+		}
+		//ステージ3 → ゴール
+		if(SceneManager.GetActiveScene().name == "Main_3"){
 			SceneManager.LoadScene ("GameClear");
+		}
+
 		}
 	}
 }

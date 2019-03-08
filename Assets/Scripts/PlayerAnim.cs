@@ -1,20 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerAnim : MonoBehaviour {
 	Animator anim;
+
+	//足音
+	private AudioSource sound03;
 
 	// Use this for initialization
 	void Start () {
 		//Animatorをキャッシュ
 		anim = GetComponent<Animator>();
-		
+
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		sound03 = audioSources[2]; //足音
+
+
+		//ゲームが開始したら落下アニメーションを開始する
+		if(SceneManager.GetActiveScene().name == "Main"){
+			anim.SetBool("falldown",true);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+
+// ---------------------------------------------------------------
 		//左向きでジャンプしたとき
 		if(Input.GetKeyDown(KeyCode.Space) & anim.GetBool("run") == false & anim.GetBool("stay") == true){
 			anim.SetBool("stay_jump",true);
@@ -44,7 +58,7 @@ public class PlayerAnim : MonoBehaviour {
 		}
 
 
-
+// ---------------------------------------------------------------
 		//右移動
 		if(Input.GetKeyDown(KeyCode.RightArrow)){
 			anim.SetBool("stay_right",false);
@@ -69,6 +83,9 @@ public class PlayerAnim : MonoBehaviour {
 
 		
 	}
+	// ---------------------------------------------------------------
+
+
 	//ジャンプが終わったときにアニメーションステートを移動するようにする
 	void CatchAnimationEvent(){
 		anim.SetBool("stay_jump",false);
@@ -77,6 +94,23 @@ public class PlayerAnim : MonoBehaviour {
 		anim.SetBool("jump_right",false);
 		anim.SetBool("run_jump_right",false);
 		anim.SetBool("highjump",false);
+	}
+
+	//アニメーションに合わせて足音を鳴らす
+	void Play_walk(){
+		sound03.PlayOneShot(sound03.clip); 
+	}
+
+	// ---------------------------------------------------------------
+
+	void GameStart(){
+		anim.SetBool("gamestart",true);
+	}
+
+	//フォールダウンからstayへ移行
+	void StayStart(){
+		anim.SetBool("stay",true);
+		
 	}
 
 }
