@@ -371,7 +371,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1816843235
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0017f9c1c0f894fa588c6959c3f62f7a, type: 3}
   m_Color: {r: 0.13866144, g: 0.26599783, b: 0.7169812, a: 1}
@@ -627,8 +627,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGround: 0
+  isSecondJump: 0
   speedUp: 0
   jumpPower: 1
+  maxJump: 0
+  effect: {fileID: 0}
+  jumpCount: 0
 --- !u!61 &224971014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -725,7 +729,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1313111581
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fcbede567417849f991fde65cc4b2fdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1206,6 +1210,10 @@ Prefab:
       propertyPath: m_Name
       value: Item
       objectReference: {fileID: 0}
+    - target: {fileID: 1278730282286200, guid: 3f4bd8f55a37e44dd95088d7d515bcb6, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f4bd8f55a37e44dd95088d7d515bcb6, type: 2}
   m_IsPrefabAsset: 0
@@ -1433,7 +1441,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1816843235
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0017f9c1c0f894fa588c6959c3f62f7a, type: 3}
   m_Color: {r: 0.13866144, g: 0.26599783, b: 0.7169812, a: 1}
@@ -1506,6 +1514,10 @@ Prefab:
     - target: {fileID: 1278730282286200, guid: 3f4bd8f55a37e44dd95088d7d515bcb6, type: 2}
       propertyPath: m_Name
       value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278730282286200, guid: 3f4bd8f55a37e44dd95088d7d515bcb6, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f4bd8f55a37e44dd95088d7d515bcb6, type: 2}
@@ -1592,6 +1604,10 @@ Prefab:
     - target: {fileID: 1624293075403598, guid: ff5a0bd4abc2a4dd89f69c062ac9978d, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475239965069608, guid: ff5a0bd4abc2a4dd89f69c062ac9978d, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff5a0bd4abc2a4dd89f69c062ac9978d, type: 2}
@@ -3000,7 +3016,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1816843235
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0017f9c1c0f894fa588c6959c3f62f7a, type: 3}
   m_Color: {r: 0.77345145, g: 0.77897346, b: 0.8584906, a: 1}
@@ -3140,22 +3156,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2634c884d3cbe4530aaba916b9f06b53, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1638406745 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1914094698024944, guid: ff5a0bd4abc2a4dd89f69c062ac9978d,
-    type: 2}
-  m_PrefabInternal: {fileID: 618266948}
---- !u!114 &1638406747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1638406745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa42d72016f243c5ac0a148eeec1ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1639364617
 Prefab:
   m_ObjectHideFlags: 0
@@ -3575,22 +3575,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2634c884d3cbe4530aaba916b9f06b53, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &2124218362 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1889371213905666, guid: ff5a0bd4abc2a4dd89f69c062ac9978d,
-    type: 2}
-  m_PrefabInternal: {fileID: 618266948}
---- !u!114 &2124218364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2124218362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa42d72016f243c5ac0a148eeec1ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2131665816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4893691623117264, guid: 2634c884d3cbe4530aaba916b9f06b53,
