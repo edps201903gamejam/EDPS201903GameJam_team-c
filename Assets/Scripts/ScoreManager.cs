@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 
 	public int score;
 	public int totalScore;
-	public int time;
+	public float time;
 
 	private float result;
 	private float totalResult;

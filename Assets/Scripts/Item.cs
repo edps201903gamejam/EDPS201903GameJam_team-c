@@ -16,7 +16,7 @@ public class Item : MonoBehaviour
 
 
 	public static int totalItem;
-	public int itemCount = 0;
+	public static int itemCount = 0;
 	
 	public static int scoreCount;
 

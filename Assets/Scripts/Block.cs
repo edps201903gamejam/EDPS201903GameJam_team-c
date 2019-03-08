@@ -32,6 +32,8 @@ public class Block : MonoBehaviour
 
 	public bool faidBlock = true;
 
+//	public AudioSource blockBreak;
+
 
 	//移動床の移動座標と速度
 #pragma warning disable 0649
@@ -79,6 +81,7 @@ public class Block : MonoBehaviour
 		if (IsDestroy() == true && faidBlock == true)
 		{
 			Destroy(this.gameObject);
+//			blockBreak.PlayOneShot(blockBreak.clip);
 		}
 
 		if (stop)
