@@ -30,6 +30,9 @@ public class Block : MonoBehaviour
 
 	private float currentTime;
 
+	public bool faidBlock = true;
+
+
 	//移動床の移動座標と速度
 #pragma warning disable 0649
 	[SerializeField]
@@ -73,7 +76,7 @@ public class Block : MonoBehaviour
 		AlphaUpdate();
 		
 		//countTimeがtimeLimitを超えたらオブジェクトを消す
-		if (IsDestroy() == true)
+		if (IsDestroy() == true && faidBlock == true)
 		{
 			Destroy(this.gameObject);
 		}
@@ -113,7 +116,7 @@ public class Block : MonoBehaviour
 	//画像の透明度を変更する処理
 	void AlphaUpdate()
 	{
-		if (playerFlag)
+		if (playerFlag && faidBlock)
 		{
 			currentTime -= Time.deltaTime;
 
