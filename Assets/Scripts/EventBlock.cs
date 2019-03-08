@@ -8,12 +8,14 @@ using UnityEngine;
 public class EventBlock : MonoBehaviour
 {
 	public GameObject enemy;
+	public GameObject subCamera;
 
 	public bool EnemyFlag;
 	
 	void Start()
 	{
 		enemy.SetActive(false);
+		subCamera.SetActive(false);
 		EnemyFlag = false;
 	}
 
@@ -22,6 +24,7 @@ public class EventBlock : MonoBehaviour
 		if (EnemyFlag)
 		{
 			enemy.SetActive(true);
+			subCamera.SetActive(true);
 		}
 	}
 	
