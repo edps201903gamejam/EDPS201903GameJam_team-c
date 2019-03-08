@@ -17,9 +17,9 @@ public class Player : MonoBehaviour
 	//移動速度
 	private float speed = 5.0f;
 	//ジャンプの高さ
-	private float jumpSpeed = 10.0f;
+	public float jumpSpeed = 15.0f;
 	//ジャンプの力
-	public float jumpPower = 1.0f;
+	public float jumpPower = 1.3f;
 
 	private float timeJump = 0.25f;
 	

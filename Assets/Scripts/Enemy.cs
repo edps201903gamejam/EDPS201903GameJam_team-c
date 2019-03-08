@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-	private float speed = 0.025f;
+	public float speed = 1.0f;
 
 	void Update ()
 	{
