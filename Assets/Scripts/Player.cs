@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
 	//地面に付いているかどうか
 	public bool isGround;
+	public bool isSecondJump;
 
 	//ハイジャンプのフラグ
 	public bool speedUp;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
 	//移動速度
 	private float speed = 5.0f;
 	//ジャンプの高さ
-	private float jumpSpeed = 12.5f;
+	private float jumpSpeed = 10.0f;
 	//ジャンプの力
 	public float jumpPower = 1.0f;
 
@@ -47,6 +48,8 @@ public class Player : MonoBehaviour
 		maxJump = false;
 
 		jumpCount = 0;
+
+		isSecondJump = false;
 	}
 	
 	void FixedUpdate ()
@@ -59,13 +62,10 @@ public class Player : MonoBehaviour
 	{
 		Move();
 		Jump();
-
-//		if (maxJump && isGround)
-//		{
-//			//プレイヤーの着地エフェクト
-//			effect2 = Instantiate(effect, this.transform.position, Quaternion.identity);
-//			Destroy(effect2, 0.5f);
-//		}
+		if (isSecondJump)
+		{
+			SecoundJump();
+		}
 		
 	}
 
@@ -132,6 +132,15 @@ public class Player : MonoBehaviour
 
 		isGround = false;
 	}
+
+	void SecoundJump()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			rd.velocity = Vector2.up.normalized * jumpSpeed;
+			isSecondJump = false;
+		}
+	}
 	
 	void OnTriggerEnter2D(Collider2D c)
 	{
@@ -148,6 +157,7 @@ public class Player : MonoBehaviour
 	{
 		if (c.gameObject.tag == "Block")
 		{
+			isSecondJump = false;
 			isGround = true;
 			if (maxJump)
 			{
@@ -163,11 +173,13 @@ public class Player : MonoBehaviour
 		if (c.gameObject.tag == "Block")
 		{
 			isGround = true;
+			isSecondJump = false;
 		}
 	}
 	
 	void OnCollisionExit2D(Collision2D c)
 	{
 		isGround = false;
+		isSecondJump = true;
 	}
 }
