@@ -28,7 +28,7 @@ public class EventBlock : MonoBehaviour
 	}
 	
 	//プレイヤーがブロックの上に乗ったら敵キャラを表示
-	void OnCollisionEnter2D(Collision2D c)
+	void OnTriggerEnter2D(Collider2D c)
 	{
 		if (c.gameObject.tag == "Player")
 		{
