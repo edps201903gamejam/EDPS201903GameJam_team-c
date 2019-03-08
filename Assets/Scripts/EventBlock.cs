@@ -11,7 +11,6 @@ public class EventBlock : MonoBehaviour
 	public GameObject subCamera;
 
 	public bool EnemyFlag;
-	
 	void Start()
 	{
 		enemy.SetActive(false);
